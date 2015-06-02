@@ -15,7 +15,7 @@ clc
 % -------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
-% Read in Ith frames as PNG and convert to JPG
+% Import the I frames
 %
 % Frame order:
 %   IBPB | IBPB | IBPB | IBPB | IBPB | IBPB | IBPB | IB
@@ -35,15 +35,17 @@ for x = 1 : 30
     end
 
     % Import each frames
-    oldFrames{x} = double( imresize( rgb2gray( imread( strcat(newString,...
+	oldFrames{x} = double( imresize( rgb2gray( imread( strcat(newString,...
                                                 '.png') ) ), [256 384]) );
 
 end
 
-% Copy over only the I frames
+% -------------------------------------------------------------------------
+% Copy over only the I frames to container containing the final frames
+% -------------------------------------------------------------------------
 for x = 1 : 4 : 30
 
-    newFrames{x} = oldFrames{x};
+	newFrames{x} = oldFrames{x};
 
 end
 
@@ -74,7 +76,7 @@ for y = 3 : 4 : 30
     % Error between reconstructed image and original P frame
     P_error = P - P_comp;
 
-    newFrames{y} = P_error;
+    newFrames{y} = I - P_error;
 
 end
 
@@ -148,6 +150,57 @@ for z = 4 : 4 : 28
 
     newFrames{z} = Bframe_error;
 
+end
+
+% Import captions from .csv file
+captions = readtable('High5_PNG\caption.csv');
+size = size( oldFrames{1} );
+height = size(1,1);
+width  = size(1,2);
+
+% -------------------------------------------------------------------------
+% Add FIRST captions to the appropriate frames
+% -------------------------------------------------------------------------
+Text = char( captions{1,3} );
+H = vision.TextInserter(Text);
+H.Color = [255 255 255];
+H.FontSize = 20; % CHANGE TO 60 FOR FINAL CODE
+H.Location = [ (width / 5) (5 * height / 6)]; % CHANGE TO []
+
+for x = captions{1,1} : ( captions{1,1} + captions{1,2} - 1)
+    
+	newFrames{x} = step(H, newFrames{x});
+    
+end
+
+% -------------------------------------------------------------------------
+% Add SECOND captions to the appropriate frames
+% -------------------------------------------------------------------------
+Text = char( captions{2,3} );
+H = vision.TextInserter(Text);
+H.Color = [255 255 255];
+H.FontSize = 20;
+H.Location = [ (width / 5) (5 * height / 6)];
+
+for x = captions{2,1} : ( captions{2,1} + captions{2,2} )
+    
+	newFrames{x} = step(H, newFrames{x});
+    
+end
+
+% -------------------------------------------------------------------------
+% Add THIRD captions to the appropriate frames
+% -------------------------------------------------------------------------
+Text = char( captions{3,3} );
+H = vision.TextInserter(Text);
+H.Color = [255 255 255];
+H.FontSize = 20;
+H.Location = [ (width / 5) (5 * height / 6)];
+
+for x = captions{3,1} : ( captions{3,1} + captions{3,2} )
+    
+    newFrames{x} = step(H, newFrames{x});
+    
 end
 
 % -------------------------------------------------------------------------
