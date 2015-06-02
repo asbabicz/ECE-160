@@ -30,7 +30,7 @@ for x = 1 : 30
 
     if x < 10
         newString = strcat( string, '0', num2str(x) ); % Add leading zero
-	else
+    else
         newString = strcat( string, num2str(x) );
     end
 
@@ -167,7 +167,7 @@ H.Color = [255 255 255];
 H.FontSize = 20; % CHANGE TO 60 FOR FINAL CODE
 H.Location = [ (width / 5) (5 * height / 6)]; % CHANGE TO []
 
-for x = captions{1,1} : ( captions{1,1} + captions{1,2} - 1)
+for x = captions{1,1} : ( captions{1,1} + captions{1,2} )
     
 	newFrames{x} = step(H, newFrames{x});
     
