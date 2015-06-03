@@ -107,7 +107,7 @@ for z = 2 : 4 : 28
     imgCompPB = motionComp(P, motionVectPB, MBsize);
 
     % Average the two compensated images to get
-    imgCompBavg = (imgCompIB - imgCompPB) / 2;
+    imgCompBavg = (imgCompIB + imgCompPB) / 2;
 
     % Error between reconstructed image and original B frame 
     Bframe_error = B - imgCompBavg;
@@ -143,7 +143,7 @@ for z = 4 : 4 : 28
     imgCompPB = motionComp(P, motionVectPB, MBsize);
 
     % Average the two compensated images to get
-    imgCompBavg = (imgCompIB - imgCompPB) / 2;
+    imgCompBavg = (imgCompIB + imgCompPB) / 2;
 
     % Error between reconstructed image and original B frame 
     Bframe_error = B - imgCompBavg;
