@@ -1,21 +1,21 @@
-% ------------------------------------------------------------------------------
+% -------------------------------------------------------------------------
 % Idecode
-% ------------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+%
+%  This function decodes a bitsream produced by the function Iencode. It
+%   produces a JPEG compressed DOUBLE image (grayscale image). To view this
+%   image, type "imshow( uint8(JPEGimg) )"
 %
 % Inputs
 %   code - bitstream to decode into a resulting JPEG compressed image
 %   dict - dictionary used to decode the bitstream
-%   dim  - dimentions of the original image (needed to decoce the bitstream!)
+%   dim  - dimentions of the original image (needed to decode bitstream)
 %   
 % Outputs  
-%   JPEGimg - the resulting JPEG compressed image. A DOUBLE image (grayscale
-%             image
-%
-%   This function decodes a bitsream produced by the function Iencode. It
-%   produces a JPEG compressed DOUBLE image (grayscale image). To view this
-%   image, type "imshow( uint8(JPEGimg) )"
+%   JPEGimg - the resulting JPEG compressed image. A DOUBLE image
+%             (grayscale image)
 %   
-% ------------------------------------------------------------------------------
+% -------------------------------------------------------------------------
 
 function [JPEGimg] = Idecode( code, dict, dim )
 

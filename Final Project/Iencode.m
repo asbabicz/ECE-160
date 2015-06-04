@@ -1,6 +1,9 @@
-% ------------------------------------------------------------------------------
+% -------------------------------------------------------------------------
 % Iencode
-% ------------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+%
+% This function encode a DOUBLE image (grayscale image) into a bistream to
+%	later be decoded by a decoder (Idecode)
 %
 % Inputs
 %   img - a DOUBLE image (grayscale image)
@@ -8,12 +11,9 @@
 % Outputs  
 %   code - bitstream to decode into a resulting JPEG compressed image
 %   dict - dictionary used to decode the bitstream
-%   dim  - dimentions of the original image (needed to decoce the bitstream!)
+%   dim  - dimentions of the original image (needed to decode bitstream)
 %   
-%   This function encode a DOUBLE image (grayscale image) into a bistream to
-%       later be decoded by a decoder (Idecode)
-%   
-% ------------------------------------------------------------------------------
+% -------------------------------------------------------------------------
 
 function [code, dict, dim] = Iencode( img )
 
